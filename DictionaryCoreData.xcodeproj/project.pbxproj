@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D70D6AD2291C131A00B14DDF /* WordTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D70D6AD1291C131A00B14DDF /* WordTableViewCell.swift */; };
+		D70D6AD5291C1BDF00B14DDF /* AddNewWordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D70D6AD4291C1BDF00B14DDF /* AddNewWordViewController.swift */; };
 		D7BA0084291A058C000AE260 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7BA0083291A058C000AE260 /* AppDelegate.swift */; };
 		D7BA0088291A058C000AE260 /* WordListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7BA0087291A058C000AE260 /* WordListViewController.swift */; };
 		D7BA008D291A0590000AE260 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D7BA008C291A0590000AE260 /* Assets.xcassets */; };
@@ -17,6 +19,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D70D6AD1291C131A00B14DDF /* WordTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordTableViewCell.swift; sourceTree = "<group>"; };
+		D70D6AD4291C1BDF00B14DDF /* AddNewWordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewWordViewController.swift; sourceTree = "<group>"; };
 		D7BA0080291A058C000AE260 /* DictionaryCoreData.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DictionaryCoreData.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D7BA0083291A058C000AE260 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D7BA0087291A058C000AE260 /* WordListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordListViewController.swift; sourceTree = "<group>"; };
@@ -39,6 +43,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D70D6AD3291C1BA500B14DDF /* AddNewWord */ = {
+			isa = PBXGroup;
+			children = (
+				D70D6AD4291C1BDF00B14DDF /* AddNewWordViewController.swift */,
+			);
+			path = AddNewWord;
+			sourceTree = "<group>";
+		};
 		D7BA0077291A058C000AE260 = {
 			isa = PBXGroup;
 			children = (
@@ -77,8 +89,10 @@
 		D7BA0098291A06E1000AE260 /* Scene */ = {
 			isa = PBXGroup;
 			children = (
+				D70D6AD3291C1BA500B14DDF /* AddNewWord */,
 				D7BA009A291A071D000AE260 /* WordList */,
 				D7BA0087291A058C000AE260 /* WordListViewController.swift */,
+				D70D6AD1291C131A00B14DDF /* WordTableViewCell.swift */,
 			);
 			path = Scene;
 			sourceTree = "<group>";
@@ -181,9 +195,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				D7BA009D291A0C3A000AE260 /* CoreDataManager.swift in Sources */,
+				D70D6AD2291C131A00B14DDF /* WordTableViewCell.swift in Sources */,
 				D7BA0088291A058C000AE260 /* WordListViewController.swift in Sources */,
 				D7BA00A2291A0CD3000AE260 /* Word.swift in Sources */,
 				D7BA00A0291A0C68000AE260 /* DictionaryDataBase.xcdatamodeld in Sources */,
+				D70D6AD5291C1BDF00B14DDF /* AddNewWordViewController.swift in Sources */,
 				D7BA0084291A058C000AE260 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
