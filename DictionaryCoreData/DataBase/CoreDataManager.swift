@@ -7,7 +7,12 @@
 
 import CoreData
 
-class CoreDataManager {
+protocol DatabaseProtocol {
+    func fetch() -> [Word]
+    func insert(name: String, meaning: String) -> Word
+}
+
+class CoreDataManager: DatabaseProtocol {
     
     private let modelName: String
     

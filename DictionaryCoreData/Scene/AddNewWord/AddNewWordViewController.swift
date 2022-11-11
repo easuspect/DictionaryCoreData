@@ -11,9 +11,14 @@ class AddNewWordViewController: UIViewController {
     
     private lazy var nameTextField = makeTextField(placeHolder: "Enter the Word")
     private lazy var meaningTextField = makeTextField(placeHolder: "Enter the Meaning")
+    private let database: DatabaseProtocol
     
-    init() {
+    var didAddNewWord: ((Word) -> Void)?
+    
+    init(database: DatabaseProtocol) {
+        self.database = database
         super.init(nibName: nil, bundle: nil)
+        
     }
     
     required init?(coder: NSCoder) {
@@ -31,6 +36,12 @@ private extension AddNewWordViewController {
     
     func setupLayout() {
         view.backgroundColor = .white
+        
+        let addButton = UIBarButtonItem.init(title: "Save",
+                                             style: .plain,
+                                             target: self,
+                                             action: #selector(didClickSaveButton))
+        navigationItem.rightBarButtonItem = addButton
         
         view.addSubview(nameTextField)
         view.addSubview(meaningTextField)
@@ -50,10 +61,26 @@ private extension AddNewWordViewController {
         ])
     }
     
+    @objc func didClickSaveButton() {
+        guard let name = nameTextField.text, !name.isEmpty else {
+            print("Name field con not be Empty")
+            return }
+    
+    guard let meaning = meaningTextField.text, !meaning.isEmpty else {
+            print("Meaning field con not be Empty")
+            return }
+        
+        let newWord = database.insert(name: name, meaning: meaning)
+        didAddNewWord?(newWord)
+        navigationController?.popViewController(animated: true)
+    }
+}
+
     func makeTextField(placeHolder: String) -> UITextField {
         let textField = UITextField()
         textField.borderStyle = .roundedRect
         textField.placeholder = placeHolder
         return textField
     }
-}
+    
+

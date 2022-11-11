@@ -10,7 +10,7 @@ import UIKit
 class WordListViewController: UIViewController {
     
     
-    private let coreDataManager: CoreDataManager
+    private let database: DatabaseProtocol
     
     private lazy var tableView: UITableView = {
         let table = UITableView.init(frame: .zero, style: .plain)
@@ -22,8 +22,8 @@ class WordListViewController: UIViewController {
     
     var wordList: [Word] = []
 
-    init(coreDataManager: CoreDataManager) {
-        self.coreDataManager = coreDataManager
+    init(database: DatabaseProtocol) {
+        self.database = database
         super.init(nibName: nil, bundle: nil)
         
     }
@@ -56,13 +56,20 @@ private extension WordListViewController {
     }
     
     @objc func didClickAddButton() {
-        let addWordVC = AddNewWordViewController()
+        navigateToAddNewWord()
+    }
+    
+    func navigateToAddNewWord() {
+        let addWordVC = AddNewWordViewController(database: database)
+        addWordVC.didAddNewWord = { [weak self] newWord in
+            self?.wordList.append(newWord)
+            self?.tableView.reloadData()
+        }
         navigationController?.pushViewController(addWordVC, animated: true)
     }
     
-    
     func fetchWords() {
-        self.wordList = coreDataManager.fetch()
+        self.wordList = database.fetch()
         tableView.reloadData()
     }
 }
