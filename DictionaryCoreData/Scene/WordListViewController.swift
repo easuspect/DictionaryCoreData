@@ -9,9 +9,8 @@ import UIKit
 
 class WordListViewController: UIViewController {
     
-    
     private let database: DatabaseProtocol
-    
+
     private lazy var tableView: UITableView = {
         let table = UITableView.init(frame: .zero, style: .plain)
         table.delegate = self
@@ -25,7 +24,6 @@ class WordListViewController: UIViewController {
     init(database: DatabaseProtocol) {
         self.database = database
         super.init(nibName: nil, bundle: nil)
-        
     }
     
     required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
@@ -51,7 +49,9 @@ private extension WordListViewController {
             tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: 0)
         ])
         
-        let addButton = UIBarButtonItem.init(barButtonSystemItem: .add, target: self, action: #selector(didClickAddButton))
+        let addButton = UIBarButtonItem.init(barButtonSystemItem: .add,
+                                             target: self,
+                                             action: #selector(didClickAddButton))
         navigationItem.rightBarButtonItem = addButton
     }
     
@@ -76,6 +76,21 @@ private extension WordListViewController {
 
 extension WordListViewController: UITableViewDelegate {
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let updateWordVC = UpdateWordViewController(database: database)
+        updateWordVC.updateNameLabel.text = wordList[indexPath.row].name
+        updateWordVC.updateMeaningLabel.text = wordList[indexPath.row].meaning
+        
+        navigationController?.pushViewController(updateWordVC, animated: true)
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            database.delete(word: wordList[indexPath.row])
+            wordList.remove(at: indexPath.row)
+            self.tableView.reloadData()
+        }
+    }
 }
 
 extension WordListViewController: UITableViewDataSource {
@@ -88,9 +103,12 @@ extension WordListViewController: UITableViewDataSource {
             fatalError("Couldn`t find WordTableViewCell")
         }
         cell.configure(with: wordList[indexPath.row])
+        
         return cell
     }
 }
+
+
 
 
 

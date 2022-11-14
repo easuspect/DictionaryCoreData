@@ -20,7 +20,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     private func startApplication() {
         let database = CoreDataManager.init(modelName: "DictionaryDataBase")
         let WordListViewController = WordListViewController(database: database)
-        database.insert(name: "First", meaning: "Ilk")
         window = UIWindow.init(frame: UIScreen.main.bounds)
         window?.rootViewController = UINavigationController(rootViewController: WordListViewController)
         window?.makeKeyAndVisible()

@@ -12,13 +12,12 @@ class AddNewWordViewController: UIViewController {
     private lazy var nameTextField = makeTextField(placeHolder: "Enter the Word")
     private lazy var meaningTextField = makeTextField(placeHolder: "Enter the Meaning")
     private let database: DatabaseProtocol
-    
+ 
     var didAddNewWord: ((Word) -> Void)?
     
     init(database: DatabaseProtocol) {
         self.database = database
         super.init(nibName: nil, bundle: nil)
-        
     }
     
     required init?(coder: NSCoder) {
@@ -29,7 +28,6 @@ class AddNewWordViewController: UIViewController {
         
         setupLayout()
     }
-    
 }
 
 private extension AddNewWordViewController {
@@ -63,6 +61,7 @@ private extension AddNewWordViewController {
     
     @objc func didClickSaveButton() {
         guard let name = nameTextField.text, !name.isEmpty else {
+            
             print("Name field con not be Empty")
             return }
     
@@ -82,5 +81,10 @@ private extension AddNewWordViewController {
         textField.placeholder = placeHolder
         return textField
     }
-    
+ 
+
+
+
+
+
 
